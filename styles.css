@@ -462,8 +462,8 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   padding:0 24px;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:16px;
+  justify-content:center;
+  gap:12px;
 }
 .footer__logo{width:28px;height:auto;flex-shrink:0}
 @media (max-width:520px){
