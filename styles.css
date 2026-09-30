@@ -138,7 +138,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   top:78%;
   left:78%;
   transform:translate(-50%,-50%);
-  width:min(560px,60vw);
+  width:min(375px,40vw);
   height:auto;
   opacity:.32;
   filter:drop-shadow(0 0 40px rgba(238,61,180,.35));
