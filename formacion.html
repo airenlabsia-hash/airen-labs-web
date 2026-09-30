@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formación inCompany — Airen Labs</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="alternate icon" type="image/png" sizes="48x48" href="favicon-48.png">
+<link rel="alternate icon" type="image/png" sizes="512x512" href="favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="bg-scene" aria-hidden="true">
+  <div class="wave wave--1"></div>
+  <div class="wave wave--2"></div>
+  <div class="wave wave--3"></div>
+  <canvas id="stars"></canvas>
+  <div class="bg-fade"></div>
+</div>
+
+<a href="index.html" class="back-link">← Volver a inicio</a>
+
+<section class="page-hero">
+  <div class="container reveal">
+    <div class="page-hero__grid">
+      <div class="page-hero__media"><img src="service-formacion.png" alt="Formación inCompany"></div>
+      <div class="page-hero__text">
+        <h1 class="heading-solid">Formación inCompany</h1>
+        <p class="page-hero__lead">Enseñamos a tu equipo a usar la IA en el día a día: menos tareas repetitivas, más tiempo para lo que importa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="training">
+  <div class="container">
+    <div class="cards">
+      <article class="card reveal">
+        <span class="card__icon" style="--icon-color:var(--primary)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v16M13 21V9a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <h3>Para empresas</h3>
+        <p>Formamos a tu equipo para automatizar tareas repetitivas, redactar más rápido y tomar decisiones con datos. Sesiones prácticas y adaptadas a tu sector, sin tecnicismos.</p>
+      </article>
+      <article class="card reveal">
+        <span class="card__icon" style="--icon-color:var(--secondary-text)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" stroke-linecap="round"/></svg>
+        </span>
+        <h3>Para particulares</h3>
+        <p>¿Autónomo o quieres dar el salto a trabajar con IA? Aprende a usar las herramientas que ya existen para ahorrar horas cada semana, sin necesidad de programar.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="resources">
+  <div class="container reveal">
+    <h2 class="center heading-solid">Recursos gratuitos</h2>
+    <p class="resources__intro">Guías y plantillas para empezar a usar la IA en tu negocio. Déjanos tu nombre y email y te avisamos en cuanto estén disponibles para descargar.</p>
+
+    <form class="resources__form" id="resourcesForm" novalidate>
+      <div class="resources__field">
+        <label for="resName">Nombre</label>
+        <input type="text" id="resName" name="name" autocomplete="name" required>
+        <span class="resources__error" id="resNameError">Escribe tu nombre</span>
+      </div>
+      <div class="resources__field">
+        <label for="resEmail">Email</label>
+        <input type="email" id="resEmail" name="email" autocomplete="email" required>
+        <span class="resources__error" id="resEmailError">Escribe un email válido</span>
+      </div>
+      <button type="submit" class="btn btn--primary">Desbloquear recursos</button>
+    </form>
+
+    <p class="resources__note">*Aún no hemos publicado los documentos — al enviarte, te avisaremos por email en cuanto estén listos para descargar.</p>
+
+    <div class="resources__list" id="resourcesList" hidden>
+      <div class="resource">
+        <span class="resource__icon" style="--icon-color:var(--primary)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 4v5h5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="resource__body">
+          <h3>Guía rápida: primeros pasos con IA en tu negocio</h3>
+          <p>Por dónde empezar sin perder tiempo ni dinero</p>
+        </div>
+        <span class="resource__status">Próximamente</span>
+      </div>
+      <div class="resource">
+        <span class="resource__icon" style="--icon-color:var(--accent)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l2 2 4-4M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="resource__body">
+          <h3>Checklist: ¿está tu empresa lista para automatizar?</h3>
+          <p>Autoevaluación de 10 puntos para saber por dónde tirar</p>
+        </div>
+        <span class="resource__status">Próximamente</span>
+      </div>
+      <div class="resource">
+        <span class="resource__icon" style="--icon-color:var(--secondary-text)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 9h8M8 13h5M21 12c0 4.5-4 8-9 8-1.4 0-2.7-.3-3.9-.8L3 20l1-4.3C3.4 14.4 3 13.3 3 12c0-4.5 4-8 9-8s9 3.5 9 8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="resource__body">
+          <h3>Plantilla de prompts para tareas repetitivas</h3>
+          <p>Instrucciones ya listas para copiar y usar en tu día a día</p>
+        </div>
+        <span class="resource__status">Próximamente</span>
+      </div>
+    </div>
+
+    <div class="resources__thanks" id="resourcesThanks" hidden>
+      <p>¡Gracias<span id="thanksName"></span>! Te avisaremos a <strong id="thanksEmail"></strong> en cuanto estén listos para descargar.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <img src="logo.svg" alt="Airen Labs" class="footer__logo">
+    <p>© 2026 Airen Labs. Hacemos crecer tu negocio con IA.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(() => {
+  const form = document.getElementById('resourcesForm');
+  const nameInput = document.getElementById('resName');
+  const emailInput = document.getElementById('resEmail');
+  const nameError = document.getElementById('resNameError');
+  const emailError = document.getElementById('resEmailError');
+  const list = document.getElementById('resourcesList');
+  const thanks = document.getElementById('resourcesThanks');
+  const thanksName = document.getElementById('thanksName');
+  const thanksEmail = document.getElementById('thanksEmail');
+
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    let valid = true;
+
+    if (!name) {
+      nameError.style.display = 'block';
+      valid = false;
+    } else {
+      nameError.style.display = 'none';
+    }
+
+    if (!emailRe.test(email)) {
+      emailError.style.display = 'block';
+      valid = false;
+    } else {
+      emailError.style.display = 'none';
+    }
+
+    if (!valid) return;
+
+    list.hidden = false;
+    thanksName.textContent = ', ' + name;
+    thanksEmail.textContent = email;
+    thanks.hidden = false;
+    form.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>
