@@ -603,10 +603,20 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   display:flex;
   align-items:center;
   gap:16px;
+  width:100%;
   background:var(--glass);
   border:1px solid var(--border);
   border-radius:14px;
   padding:20px 22px;
+  font-family:inherit;
+  text-align:left;
+  cursor:pointer;
+  transition:border-color .2s ease, background .2s ease;
+}
+button.resource:hover,
+button.resource:focus-visible{
+  border-color:var(--primary);
+  background:var(--glass-strong);
 }
 .resource__icon{
   width:40px;height:40px;flex-shrink:0;border-radius:10px;
@@ -645,6 +655,61 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   .resource{flex-wrap:wrap;text-align:center;justify-content:center}
   .resource__body{flex:1 1 100%}
 }
+
+/* ---------- Resource unlock modal ---------- */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.modal[hidden]{display:none}
+.modal__backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(8,5,14,.72);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+}
+.modal__dialog{
+  position:relative;
+  width:100%;
+  max-width:460px;
+  max-height:90vh;
+  overflow-y:auto;
+  background:var(--glass-strong);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:36px 32px;
+}
+.modal__close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:32px;
+  height:32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--border);
+  border-radius:50%;
+  color:var(--foreground);
+  font-size:1.3rem;
+  line-height:1;
+  cursor:pointer;
+}
+.modal__close:hover{background:rgba(255,255,255,.12)}
+#resourceModalTitle{font-size:1.4rem;margin-bottom:.5rem;padding-right:28px}
+.modal__resource-name{color:var(--muted-foreground);font-size:.95rem;margin-bottom:1rem}
+.modal .resources__note{max-width:none;margin:0 0 1.5rem}
+.modal .resources__form{max-width:none;padding:0;border:none;background:none;backdrop-filter:none}
+.modal .resources__thanks{max-width:none;margin:0}
 
 /* ---------- Sub-page: diagnóstico (multi-step wizard) ---------- */
 .diag{padding:120px 0 100px;min-height:70vh}
