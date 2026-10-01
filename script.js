@@ -95,33 +95,67 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   }
 })();
 
-// ---------- Hero: light spark travelling from "Lab|s" to the logo ----------
+// ---------- Hero: constellation trail from "Labs" to the logo's ring ----------
 (() => {
   const hero = document.getElementById('hero');
-  const anchor = document.getElementById('heroSparkAnchor');
-  const logo = document.getElementById('heroLogo');
-  const spark = document.getElementById('heroSpark');
-  const linkPath = document.getElementById('heroLinkPath');
-  if (!hero || !anchor || !logo || !spark || !linkPath) return;
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) return;
+  const anchor = document.getElementById('heroLineAnchor');
+  const ring = document.querySelector('.hero__logo-ring');
+  const path = document.getElementById('heroLinkPath');
+  const starsGroup = document.getElementById('heroLinkStars');
+  if (!hero || !anchor || !ring || !path || !starsGroup) return;
+
+  function pointOnCurve(t, x1, y1, cx, cy, x2, y2) {
+    const mt = 1 - t;
+    return {
+      x: mt * mt * x1 + 2 * mt * t * cx + t * t * x2,
+      y: mt * mt * y1 + 2 * mt * t * cy + t * t * y2,
+    };
+  }
 
   function layout() {
     const heroRect = hero.getBoundingClientRect();
     const a = anchor.getBoundingClientRect();
-    const l = logo.getBoundingClientRect();
+    const r = ring.getBoundingClientRect();
 
-    const x1 = a.left + a.width / 2 - heroRect.left;
-    const y1 = a.top + a.height * 0.15 - heroRect.top;
-    const x2 = l.left + l.width * 0.52 - heroRect.left;
-    const y2 = l.top + l.height * 0.4 - heroRect.top;
+    const x1 = a.left - heroRect.left;
+    const y1 = a.top + a.height * 0.2 - heroRect.top;
+    const centerX = r.left + r.width / 2 - heroRect.left;
+    const centerY = r.top + r.height / 2 - heroRect.top;
+    const radius = r.width / 2;
 
-    const cx = x1 + (x2 - x1) * 0.7;
-    const cy = y1 + (y2 - y1) * 0.15;
+    // full curve toward the ring's centre, then pulled back (via De Casteljau
+    // subdivision) to stop right where it first crosses the ring's edge
+    const cx = x1 + (centerX - x1) * 0.7;
+    const cy = y1 + (centerY - y1) * 0.15;
 
-    const d = `M${x1.toFixed(1)} ${y1.toFixed(1)} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
-    linkPath.setAttribute('d', d);
-    spark.style.setProperty('--spark-path', `"${d}"`);
+    let tHit = 1;
+    for (let i = 0; i <= 200; i++) {
+      const t = i / 200;
+      const p = pointOnCurve(t, x1, y1, cx, cy, centerX, centerY);
+      if (Math.hypot(p.x - centerX, p.y - centerY) <= radius) {
+        tHit = t;
+        break;
+      }
+    }
+
+    const q0x = x1 + (cx - x1) * tHit;
+    const q0y = y1 + (cy - y1) * tHit;
+    const end = pointOnCurve(tHit, x1, y1, cx, cy, centerX, centerY);
+
+    const d = `M${x1.toFixed(1)} ${y1.toFixed(1)} Q${q0x.toFixed(1)} ${q0y.toFixed(1)} ${end.x.toFixed(1)} ${end.y.toFixed(1)}`;
+    path.setAttribute('d', d);
+
+    starsGroup.innerHTML = '';
+    const stops = [0.14, 0.32, 0.5, 0.68, 0.86];
+    stops.forEach((t, i) => {
+      const p = pointOnCurve(t * tHit, x1, y1, cx, cy, centerX, centerY);
+      const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      dot.setAttribute('cx', p.x.toFixed(1));
+      dot.setAttribute('cy', p.y.toFixed(1));
+      dot.setAttribute('r', i % 2 === 0 ? 1.7 : 1.1);
+      dot.style.animationDelay = (i * 0.45).toFixed(2) + 's';
+      starsGroup.appendChild(dot);
+    });
   }
 
   layout();
