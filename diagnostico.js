@@ -592,13 +592,15 @@
     stage.appendChild(h);
 
     const p = document.createElement('p');
-    p.textContent = 'Nos ponemos a preparar el diagnóstico de tu negocio. Lo recibirás en tu email en las próximas 48 horas.';
+    p.appendChild(document.createTextNode('Nos ponemos a preparar el diagnóstico de tu negocio.'));
+    p.appendChild(document.createElement('br'));
+    p.appendChild(document.createTextNode('Lo recibirás en tu email en las próximas 48 horas.'));
     stage.appendChild(p);
 
     const bq = document.createElement('blockquote');
-    bq.textContent = 'La libertad real es tener sistemas que hagan el trabajo por ti.';
+    bq.textContent = 'La libertad real es tener sistemas que hagan el trabajo por y para ti.';
     const cite = document.createElement('cite');
-    cite.textContent = '— Irene · AIREN LABS';
+    cite.textContent = '— AIREN LABS';
     bq.appendChild(cite);
     stage.appendChild(bq);
 
