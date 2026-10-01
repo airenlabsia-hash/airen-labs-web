@@ -654,7 +654,9 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border:1px solid var(--border);border-radius:20px;padding:56px 44px;
 }
-.diag__welcome h1{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:1.25rem;color:#fff}
+.diag__welcome-logo{width:56px;height:auto;margin:0 auto 1.25rem}
+.diag__welcome h1{font-size:clamp(1.6rem,4vw,2.6rem);margin-bottom:1.25rem;color:#fff}
+.diag__nowrap{white-space:nowrap}
 .diag__welcome p{color:var(--muted-foreground);font-size:1.05rem;margin-bottom:1rem;line-height:1.7}
 .diag__welcome .btn{margin-top:1.5rem}
 
