@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico gratuito de IA para tu negocio · AIREN LABS</title>
+<meta name="description" content="Responde unas preguntas rápidas (unos 5 minutos) y recibe un diagnóstico de IA gratuito y personalizado para tu negocio, de la mano de AIREN LABS.">
+<link rel="icon" type="image/svg+xml" href="/logo.svg">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="alternate icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="alternate icon" type="image/png" sizes="512x512" href="/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<div class="bg-scene" aria-hidden="true">
+  <div class="wave wave--1"></div>
+  <div class="wave wave--2"></div>
+  <div class="wave wave--3"></div>
+  <canvas id="stars"></canvas>
+  <div class="bg-fade"></div>
+</div>
+
+<a href="/" class="back-link">← Volver a inicio</a>
+
+<main class="diag container" id="diagApp">
+  <section class="diag__welcome" id="diagWelcome">
+    <img src="/logo.svg" alt="Airen Labs" class="diag__welcome-logo">
+    <h1>Hola soy Irene, de <span class="diag__nowrap">Airen Labs</span>.</h1>
+    <p>Vamos a ver juntos dónde puede ayudarte la IA en tu negocio.</p>
+    <p>Son unas preguntas rápidas (unos 5 minutos) y, con tus respuestas, te preparamos un diagnóstico personalizado.</p>
+    <button type="button" class="btn btn--primary" id="diagStart">Empezar</button>
+  </section>
+
+  <div class="diag__progress" id="diagProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden>
+    <p class="diag__progress-meta" id="diagProgressMeta"></p>
+    <div class="diag__progress-track"><div class="diag__progress-fill" id="diagProgressFill"></div></div>
+  </div>
+
+  <div class="diag__stage" id="diagStage" hidden></div>
+
+  <noscript><p style="max-width:640px;margin:24px auto;text-align:center;color:#F1EAF7">Para hacer el diagnóstico necesitas tener JavaScript activado en tu navegador. Si no puedes activarlo, escríbenos a <a href="mailto:airenlabsia@gmail.com" style="color:#fff">airenlabsia@gmail.com</a> y te ayudamos igualmente.</p></noscript>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <img src="/logo.svg" alt="Airen Labs" class="footer__logo">
+    <p>© 2026 Airen Labs. Hacemos crecer tu negocio con IA.</p>
+    <nav class="footer__links"><a href="/privacidad">Política de privacidad</a></nav>
+  </div>
+</footer>
+
+<script src="/script.js"></script>
+<script src="/diagnostico.js"></script>
+</body>
+</html>
