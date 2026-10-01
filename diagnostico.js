@@ -600,7 +600,7 @@
     const bq = document.createElement('blockquote');
     bq.textContent = 'La libertad real es tener sistemas que hagan el trabajo por y para ti.';
     const cite = document.createElement('cite');
-    cite.textContent = '— AIREN LABS';
+    cite.textContent = '— AIREN LABS —';
     bq.appendChild(cite);
     stage.appendChild(bq);
 
