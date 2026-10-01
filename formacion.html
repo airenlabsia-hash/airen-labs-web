@@ -140,6 +140,7 @@
   const thanksEmail = document.getElementById('thanksEmail');
 
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxfyzOGWk8bV97gumPogRW3Slig_I2xzHLhM05pBNzHVdLhRnhcPLO4sEs1RfEDrmeJnw/exec';
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -162,6 +163,12 @@
     }
 
     if (!valid) return;
+
+    fetch(SHEET_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: new URLSearchParams({ name, email }),
+    }).catch(() => {});
 
     list.hidden = false;
     thanksName.textContent = ', ' + name;
