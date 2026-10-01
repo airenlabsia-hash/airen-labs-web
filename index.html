@@ -25,9 +25,22 @@
 </div>
 
 <section class="hero" id="hero">
-  <img src="logo.svg" alt="" aria-hidden="true" class="hero__logo-bg">
+  <img src="logo.svg" alt="" aria-hidden="true" class="hero__logo-bg" id="heroLogo">
+  <span class="hero__logo-ring" aria-hidden="true"></span>
+  <svg class="hero__link" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="heroLinkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#EE3DB4"/>
+        <stop offset="100%" stop-color="#A12EDB"/>
+      </linearGradient>
+    </defs>
+    <path id="heroLinkPath"></path>
+  </svg>
+  <svg class="hero__spark" id="heroSpark" aria-hidden="true" viewBox="0 0 14 18">
+    <path d="M7 0C7 0 0 8.5 0 12.5A7 7 0 0 0 14 12.5C14 8.5 7 0 7 0Z"/>
+  </svg>
   <div class="hero__content reveal">
-    <h1 class="flicker">Airen Labs</h1>
+    <h1 class="flicker">Airen Lab<span class="hero__spark-anchor" id="heroSparkAnchor"></span>s</h1>
     <p class="hero__subtitle">Respira, no es magia, es IA</p>
   </div>
 </section>

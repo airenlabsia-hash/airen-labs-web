@@ -94,3 +94,39 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     requestAnimationFrame(step);
   }
 })();
+
+// ---------- Hero: light spark travelling from "Lab|s" to the logo ----------
+(() => {
+  const hero = document.getElementById('hero');
+  const anchor = document.getElementById('heroSparkAnchor');
+  const logo = document.getElementById('heroLogo');
+  const spark = document.getElementById('heroSpark');
+  const linkPath = document.getElementById('heroLinkPath');
+  if (!hero || !anchor || !logo || !spark || !linkPath) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+
+  function layout() {
+    const heroRect = hero.getBoundingClientRect();
+    const a = anchor.getBoundingClientRect();
+    const l = logo.getBoundingClientRect();
+
+    const x1 = a.left + a.width / 2 - heroRect.left;
+    const y1 = a.top + a.height * 0.15 - heroRect.top;
+    const x2 = l.left + l.width * 0.52 - heroRect.left;
+    const y2 = l.top + l.height * 0.4 - heroRect.top;
+
+    const cx = x1 + (x2 - x1) * 0.7;
+    const cy = y1 + (y2 - y1) * 0.15;
+
+    const d = `M${x1.toFixed(1)} ${y1.toFixed(1)} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+    linkPath.setAttribute('d', d);
+    spark.style.setProperty('--spark-path', `"${d}"`);
+  }
+
+  layout();
+  window.addEventListener('resize', layout);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(layout);
+  }
+})();
