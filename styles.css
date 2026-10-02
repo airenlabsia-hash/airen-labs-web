@@ -428,7 +428,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 }
 .service:hover{transform:translateY(-4px);background:var(--glass-strong)}
 
-.service h3{font-size:1.35rem;color:var(--accent-color);margin-bottom:.85rem}
+.service h3{font-size:1.35rem;color:var(--accent-color);margin-bottom:.85rem;min-height:4.3rem}
 .service p{color:var(--muted-foreground);margin-bottom:1.75rem;min-height:3.2em}
 
 /* ---------- Buttons ---------- */
