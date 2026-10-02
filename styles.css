@@ -145,10 +145,12 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   z-index:0;
 }
 
-/* the glow is a white-filled copy of the logo's own vector paths (inlined,
+/* a thin stroke (no fill) traced on the logo's own vector paths (inlined,
    not an external resource, so it always renders regardless of how the
-   page is opened), blurred so the light follows its exact contour instead
-   of a generic round halo or a hard white outline — breathes slowly */
+   page is opened) — blurring a stroke concentrates the glow right at the
+   edge, defining the silhouette, instead of hazing the whole shape the way
+   a blurred fill does — breathes slowly between a dim rest state and a
+   brighter glow */
 .hero__logo-halo{
   position:absolute;
   top:86%;
@@ -161,15 +163,19 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   animation:heroLogoHalo 5s ease-in-out infinite;
 }
 .hero__logo-halo path{
-  fill:#fff;
+  fill:none;
+  stroke:#fff;
+  stroke-width:2;
+  stroke-linejoin:round;
+  stroke-linecap:round;
 }
 @keyframes heroLogoHalo{
-  0%,100%{opacity:.3;filter:blur(7px)}
-  50%{opacity:.8;filter:blur(13px)}
+  0%,100%{opacity:.4;filter:blur(2px)}
+  50%{opacity:.9;filter:blur(4px)}
 }
 
 @media (prefers-reduced-motion: reduce){
-  .hero__logo-halo{animation:none;opacity:.4;filter:blur(9px)}
+  .hero__logo-halo{animation:none;opacity:.5;filter:blur(2.5px)}
 }
 
 .hero h1{
