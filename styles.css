@@ -140,7 +140,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   transform:translate(-50%,-50%);
   width:min(250px,27vw);
   height:auto;
-  opacity:.32;
+  opacity:.5;
   filter:drop-shadow(0 0 40px rgba(238,61,180,.35));
   z-index:0;
 }
@@ -165,17 +165,17 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 .hero__logo-halo path{
   fill:none;
   stroke:#fff;
-  stroke-width:2;
+  stroke-width:3;
   stroke-linejoin:round;
   stroke-linecap:round;
 }
 @keyframes heroLogoHalo{
-  0%,100%{opacity:.4;filter:blur(2px)}
-  50%{opacity:.9;filter:blur(4px)}
+  0%,100%{opacity:.55;filter:blur(3px)}
+  50%{opacity:1;filter:blur(5px)}
 }
 
 @media (prefers-reduced-motion: reduce){
-  .hero__logo-halo{animation:none;opacity:.5;filter:blur(2.5px)}
+  .hero__logo-halo{animation:none;opacity:.7;filter:blur(3.5px)}
 }
 
 .hero h1{
