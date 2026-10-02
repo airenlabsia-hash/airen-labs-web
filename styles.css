@@ -443,6 +443,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   border:none;
   transition:transform .2s ease, box-shadow .2s ease;
 }
+.btn[hidden]{display:none}
 .btn:hover{transform:translateY(-2px)}
 
 .btn--primary{
@@ -672,6 +673,11 @@ button.resource:focus-visible{
   border-radius:999px;
   padding:6px 14px;
 }
+.resource__status--ready{
+  color:#fff;
+  background:rgba(238,61,180,.18);
+  border-color:rgba(238,61,180,.5);
+}
 
 .resources__thanks{
   max-width:560px;
@@ -683,6 +689,7 @@ button.resource:focus-visible{
   padding:20px 24px;
   color:#fff;
 }
+.resources__thanks .btn{margin-top:14px}
 
 @media (max-width:520px){
   .resource{flex-wrap:wrap;text-align:center;justify-content:center}

@@ -209,7 +209,7 @@
     <p class="resources__intro">Empieza con nuestros recursos gratuitos: guías y plantillas para dar tus primeros pasos con la IA en tu negocio.</p>
 
     <div class="resources__list">
-      <button type="button" class="resource" data-resource="Guía rápida: primeros pasos con IA en tu negocio">
+      <button type="button" class="resource" data-resource="Guía rápida: primeros pasos con IA en tu negocio" data-file="https://drive.google.com/file/d/15agjvG--Ei16CrD3pL1RE4u_NAdnunj0/view">
         <span class="resource__icon" style="--icon-color:var(--primary)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 4v5h5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
@@ -217,7 +217,7 @@
           <h3>Guía rápida: primeros pasos con IA en tu negocio</h3>
           <p>Por dónde empezar sin perder tiempo ni dinero</p>
         </span>
-        <span class="resource__status">Próximamente</span>
+        <span class="resource__status resource__status--ready">Disponible</span>
       </button>
       <button type="button" class="resource" data-resource="Checklist: ¿está tu empresa lista para automatizar?">
         <span class="resource__icon" style="--icon-color:var(--accent)">
@@ -251,7 +251,7 @@
     <div id="resourceModalForm">
       <h3 id="resourceModalTitle">Desbloquear recurso</h3>
       <p class="modal__resource-name" id="modalResourceName"></p>
-      <p class="resources__note">*Aún no hemos publicado este documento — al enviarte, te avisaremos por email en cuanto esté listo para descargar.</p>
+      <p class="resources__note" id="resourceNote">*Aún no hemos publicado este documento — al enviarte, te avisaremos por email en cuanto esté listo para descargar.</p>
 
       <form class="resources__form" id="resourcesForm" novalidate>
         <div class="resources__field">
@@ -269,7 +269,9 @@
     </div>
 
     <div class="resources__thanks" id="resourcesThanks" hidden>
-      <p>¡Gracias<span id="thanksName"></span>! Te avisaremos a <strong id="thanksEmail"></strong> en cuanto esté listo para descargar.</p>
+      <p id="thanksMessagePending">¡Gracias<span id="thanksName"></span>! Te avisaremos a <strong id="thanksEmail"></strong> en cuanto esté listo para descargar.</p>
+      <p id="thanksMessageReady" hidden>¡Gracias<span id="thanksNameReady"></span>! Te hemos abierto la guía en una pestaña nueva. Si no se abrió automáticamente, usa el botón de abajo.</p>
+      <a href="#" id="thanksFileLink" class="btn btn--primary" target="_blank" rel="noopener" hidden>Abrir guía</a>
     </div>
   </div>
 </div>
@@ -288,6 +290,7 @@
   const modal = document.getElementById('resourceModal');
   const modalFormWrap = document.getElementById('resourceModalForm');
   const modalResourceName = document.getElementById('modalResourceName');
+  const resourceNote = document.getElementById('resourceNote');
   const resourceButtons = document.querySelectorAll('.resource[data-resource]');
   const closeEls = modal.querySelectorAll('[data-modal-close]');
 
@@ -297,17 +300,24 @@
   const nameError = document.getElementById('resNameError');
   const emailError = document.getElementById('resEmailError');
   const thanks = document.getElementById('resourcesThanks');
+  const thanksMessagePending = document.getElementById('thanksMessagePending');
+  const thanksMessageReady = document.getElementById('thanksMessageReady');
   const thanksName = document.getElementById('thanksName');
+  const thanksNameReady = document.getElementById('thanksNameReady');
   const thanksEmail = document.getElementById('thanksEmail');
+  const thanksFileLink = document.getElementById('thanksFileLink');
 
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxfyzOGWk8bV97gumPogRW3Slig_I2xzHLhM05pBNzHVdLhRnhcPLO4sEs1RfEDrmeJnw/exec';
 
   let currentResource = '';
+  let currentResourceFile = '';
 
-  function openModal(resourceName) {
+  function openModal(resourceName, fileUrl) {
     currentResource = resourceName;
+    currentResourceFile = fileUrl || '';
     modalResourceName.textContent = resourceName;
+    resourceNote.hidden = !!currentResourceFile;
     form.reset();
     nameError.style.display = 'none';
     emailError.style.display = 'none';
@@ -323,7 +333,7 @@
   }
 
   resourceButtons.forEach((btn) => {
-    btn.addEventListener('click', () => openModal(btn.dataset.resource));
+    btn.addEventListener('click', () => openModal(btn.dataset.resource, btn.dataset.file));
   });
 
   closeEls.forEach((el) => el.addEventListener('click', closeModal));
@@ -354,6 +364,10 @@
 
     if (!valid) return;
 
+    if (currentResourceFile) {
+      window.open(currentResourceFile, '_blank', 'noopener');
+    }
+
     fetch(SHEET_ENDPOINT, {
       method: 'POST',
       mode: 'no-cors',
@@ -361,7 +375,20 @@
     }).catch(() => {});
 
     thanksName.textContent = ', ' + name;
+    thanksNameReady.textContent = ', ' + name;
     thanksEmail.textContent = email;
+
+    if (currentResourceFile) {
+      thanksMessagePending.hidden = true;
+      thanksMessageReady.hidden = false;
+      thanksFileLink.href = currentResourceFile;
+      thanksFileLink.hidden = false;
+    } else {
+      thanksMessagePending.hidden = false;
+      thanksMessageReady.hidden = true;
+      thanksFileLink.hidden = true;
+    }
+
     modalFormWrap.hidden = true;
     thanks.hidden = false;
   });
