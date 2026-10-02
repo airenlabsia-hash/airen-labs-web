@@ -145,55 +145,31 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   z-index:0;
 }
 
-/* two white silhouettes of the logo (cut from logo.svg's own alpha via a
-   CSS mask) sit on top of the coloured one: a soft blurred halo that lights
-   up the edge first, then a crisp fill that turns fully white and flashes,
-   before both fade out and the cycle repeats */
-.hero__logo-glow,
-.hero__logo-fill{
+/* the glow is a white-filled copy of the logo's own vector paths (inlined,
+   not an external resource, so it always renders regardless of how the
+   page is opened), blurred so the light follows its exact contour instead
+   of a generic round halo or a hard white outline — breathes slowly */
+.hero__logo-halo{
   position:absolute;
   top:86%;
   left:88%;
-  transform:translate(-50%,-50%);
   width:min(250px,27vw);
   height:min(250px,27vw);
-  background:#fff;
-  -webkit-mask-image:url('imagenes%20web/logo.svg');
-  mask-image:url('imagenes%20web/logo.svg');
-  -webkit-mask-size:contain;
-  mask-size:contain;
-  -webkit-mask-repeat:no-repeat;
-  mask-repeat:no-repeat;
-  -webkit-mask-position:center;
-  mask-position:center;
-  opacity:0;
+  transform:translate(-50%,-50%);
   z-index:0;
   pointer-events:none;
+  animation:heroLogoHalo 5s ease-in-out infinite;
 }
-.hero__logo-glow{
-  filter:blur(9px);
-  animation:heroLogoGlow 6s ease-in-out infinite;
+.hero__logo-halo path{
+  fill:#fff;
 }
-.hero__logo-fill{
-  animation:heroLogoFill 6s ease-in-out infinite;
-}
-@keyframes heroLogoGlow{
-  0%,45%{opacity:0}
-  58%{opacity:.85}
-  72%{opacity:.9}
-  85%{opacity:.3}
-  100%{opacity:0}
-}
-@keyframes heroLogoFill{
-  0%,52%{opacity:0;filter:drop-shadow(0 0 0 rgba(255,255,255,0));transform:translate(-50%,-50%) scale(1)}
-  66%{opacity:1;filter:drop-shadow(0 0 25px rgba(255,255,255,.9));transform:translate(-50%,-50%) scale(1)}
-  74%{opacity:1;filter:drop-shadow(0 0 60px rgba(255,255,255,1)) drop-shadow(0 0 100px rgba(255,255,255,.8));transform:translate(-50%,-50%) scale(1.08)}
-  86%{opacity:1;filter:drop-shadow(0 0 18px rgba(255,255,255,.6));transform:translate(-50%,-50%) scale(1)}
-  100%{opacity:0;filter:drop-shadow(0 0 0 rgba(255,255,255,0));transform:translate(-50%,-50%) scale(1)}
+@keyframes heroLogoHalo{
+  0%,100%{opacity:.3;filter:blur(7px)}
+  50%{opacity:.8;filter:blur(13px)}
 }
 
 @media (prefers-reduced-motion: reduce){
-  .hero__logo-glow,.hero__logo-fill{animation:none;opacity:0}
+  .hero__logo-halo{animation:none;opacity:.4;filter:blur(9px)}
 }
 
 .hero h1{
