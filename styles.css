@@ -12,7 +12,7 @@
   /* brand blue lightened for on-dark text/icons — raw #3333CC fails contrast on a dark scene */
   --secondary-text:#8686FF;
 
-  --gradient-primary:linear-gradient(135deg,#EE3DB4,#A12EDB);
+  --gradient-primary:linear-gradient(135deg,#6C3FE0,#3333CC 45%,#C93DBE);
   --gradient-secondary:linear-gradient(135deg,#3333CC,#A12EDB);
 
   --glass:rgba(18,12,26,0.55);
@@ -449,7 +449,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 .btn--primary{
   background:var(--gradient-primary);
   color:#fff;
-  box-shadow:0 8px 28px rgba(238,61,180,.45);
+  box-shadow:0 8px 28px rgba(108,63,224,.45);
 }
 
 .btn--outline{
