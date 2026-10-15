@@ -509,6 +509,8 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 .cta__email{margin-top:1.75rem;color:rgba(255,255,255,.8);font-size:.98rem}
 .cta__email a{color:#fff;font-weight:600;text-decoration:underline}
 
+.cta__note{margin-top:.75rem;color:rgba(255,255,255,.6);font-size:.85rem}
+
 /* ---------- Footer ---------- */
 .footer{
   padding:32px 0;
