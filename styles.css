@@ -364,7 +364,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   overflow:hidden;
   border-radius:20px;
   padding:28px 24px;
-  background:color-mix(in srgb, var(--card-color) 32%, #fff 68%);
+  background:var(--card-img) center/cover no-repeat, var(--card-color);
   cursor:pointer;
   transition:flex .55s cubic-bezier(.4,0,.2,1);
 }
@@ -372,6 +372,25 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 .pillars__item:focus-within,
 .pillars__item:focus-visible{flex:2.6}
 .pillars__item:focus-visible{outline:2px solid var(--card-color);outline-offset:-2px}
+
+/* always-on wash so the collapsed number/label read over the photo */
+.pillars__item::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(10,6,18,.78), rgba(10,6,18,.2) 55%);
+  transition:background .4s ease;
+}
+
+/* once expanded, the wash switches to the card's own corporate color so the
+   longer copy keeps reading on every photo */
+.pillars__item:hover::before,
+.pillars__item:focus-within::before{
+  background:linear-gradient(to top,
+    color-mix(in srgb, var(--card-color) 72%, #0d0714 28%) 0%,
+    color-mix(in srgb, var(--card-color) 50%, transparent) 62%,
+    rgba(10,6,18,.3) 100%);
+}
 
 .pillars__collapsed{
   position:relative;
@@ -385,7 +404,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 .pillars__item:hover .pillars__collapsed,
 .pillars__item:focus-within .pillars__collapsed{opacity:0}
 
-.pillars__num{font-family:var(--font-heading);font-weight:700;font-size:.9rem;color:color-mix(in srgb, var(--card-color) 70%, #1a1625 30%)}
+.pillars__num{font-family:var(--font-heading);font-weight:700;font-size:.9rem;color:rgba(255,255,255,.8)}
 .pillars__label{
   writing-mode:vertical-rl;
   transform:rotate(180deg);
@@ -393,7 +412,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   font-family:var(--font-heading);
   font-weight:700;
   font-size:1.2rem;
-  color:#1a1625;
+  color:#fff;
   white-space:nowrap;
 }
 
@@ -425,8 +444,8 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   width:44px;height:44px;
   margin-bottom:.5rem;
   border-radius:12px;
-  background:color-mix(in srgb, var(--card-color) 45%, #fff 55%);
-  color:color-mix(in srgb, var(--card-color) 75%, #1a1625 25%);
+  background:rgba(255,255,255,.2);
+  color:#fff;
 }
 .pillars__icon svg{width:22px;height:22px}
 
@@ -436,19 +455,19 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   font-size:.78rem;
   letter-spacing:.06em;
   text-transform:uppercase;
-  color:color-mix(in srgb, var(--card-color) 75%, #1a1625 25%);
+  color:rgba(255,255,255,.85);
 }
-.pillars__heading{font-size:1.4rem;color:#1a1625;margin:0}
-.pillars__desc{font-family:var(--font-body);font-size:.95rem;line-height:1.5;color:#49404f}
+.pillars__heading{font-size:1.4rem;color:#fff;margin:0}
+.pillars__desc{font-family:var(--font-body);font-size:.95rem;line-height:1.5;color:rgba(255,255,255,.92)}
 
 .pillars__tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .pillars__tags span{
   font-family:var(--font-body);
   font-size:.8rem;
   font-weight:500;
-  color:#1a1625;
+  color:#fff;
   padding:4px 12px;
-  border:1px solid color-mix(in srgb, var(--card-color) 55%, #1a1625 15%);
+  border:1px solid rgba(255,255,255,.45);
   border-radius:999px;
   white-space:nowrap;
 }
@@ -456,6 +475,12 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 @media (max-width:860px){
   .pillars{flex-direction:column;height:auto}
   .pillars__item{flex:none!important;padding:26px 22px}
+  .pillars__item::before{
+    background:linear-gradient(to top,
+      color-mix(in srgb, var(--card-color) 72%, #0d0714 28%) 0%,
+      color-mix(in srgb, var(--card-color) 50%, transparent) 62%,
+      rgba(10,6,18,.3) 100%);
+  }
   .pillars__collapsed{display:none}
   .pillars__expanded{
     position:static;
