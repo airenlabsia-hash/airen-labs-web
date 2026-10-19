@@ -373,19 +373,22 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 .pillars__item:focus-visible{flex:2.6}
 .pillars__item:focus-visible{outline:2px solid var(--card-color);outline-offset:-2px}
 
-/* always-on wash so the collapsed number/label read over the photo */
+/* collapsed: near-opaque tinted wash — the photo is only a faint texture,
+   not the focus, so the strip of cards reads calm instead of noisy */
 .pillars__item::before{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(to top, rgba(10,6,18,.78), rgba(10,6,18,.2) 55%);
-  transition:background .4s ease;
+  background:color-mix(in srgb, var(--card-color) 22%, #0a0612 78%);
+  opacity:.94;
+  transition:background .4s ease, opacity .4s ease;
 }
 
 /* once expanded, the wash switches to the card's own corporate color so the
    longer copy keeps reading on every photo */
 .pillars__item:hover::before,
 .pillars__item:focus-within::before{
+  opacity:1;
   background:linear-gradient(to top,
     color-mix(in srgb, var(--card-color) 72%, #0d0714 28%) 0%,
     color-mix(in srgb, var(--card-color) 50%, transparent) 62%,
