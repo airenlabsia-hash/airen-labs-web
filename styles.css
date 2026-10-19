@@ -334,21 +334,6 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   margin:0 auto 3.5rem;
 }
 
-.value__row{display:flex;align-items:flex-start;gap:16px}
-
-.value__dot{width:28px;height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding-top:6px}
-.value__dot::after{
-  content:"";
-  width:16px;height:16px;
-  border-radius:50%;
-  background:var(--step-color);
-  box-shadow:0 0 0 4px color-mix(in srgb, var(--step-color) 25%, transparent);
-}
-
-.value__body{flex:1;display:flex;flex-direction:column;gap:4px}
-.value__text{font-family:var(--font-heading);font-weight:800;color:#fff;font-size:1.5rem}
-.value__sub{font-family:var(--font-body);font-weight:500;color:var(--muted-foreground);font-size:.95rem}
-
 .value__icon{
   display:inline-flex;
   align-items:center;
@@ -362,30 +347,122 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 }
 .value__icon svg{width:16px;height:16px}
 
-/* connector rows: a fine wire between phrases with a white light-drop
-   travelling down it in a continuous loop (see script for none needed —
-   pure CSS, no measurement required since the dot column is a fixed width) */
-.value__connector{position:relative;height:78px}
-.value__wire{position:absolute;left:14px;top:0;bottom:0;width:2px;background:rgba(250,250,250,.14);transform:translateX(-50%)}
-.value__drop{position:absolute;left:14px;top:0;width:12px;height:16px;transform:translate(-50%,0);opacity:0;filter:drop-shadow(0 0 6px rgba(255,255,255,.9)) drop-shadow(0 0 14px rgba(255,255,255,.55))}
-.value__drop--a{animation:valueDrop1 4.8s ease-in-out infinite}
-.value__drop--b{animation:valueDrop2 4.8s ease-in-out infinite}
-@keyframes valueDrop1{
-  0%{top:0;opacity:0}
-  6%{opacity:1}
-  45%{top:62px;opacity:1}
-  52%{opacity:0}
-  100%{opacity:0}
+/* ---------- Pillars accordion ---------- */
+.pillars{
+  list-style:none;
+  display:flex;
+  gap:16px;
+  max-width:980px;
+  height:420px;
+  margin:0 auto 3.5rem;
 }
-@keyframes valueDrop2{
-  0%{top:0;opacity:0}
-  48%{opacity:0}
-  55%{opacity:1}
-  95%{top:62px;opacity:1}
-  100%{top:62px;opacity:0}
+
+.pillars__item{
+  position:relative;
+  flex:1;
+  min-width:0;
+  overflow:hidden;
+  border-radius:20px;
+  padding:28px 24px;
+  background:color-mix(in srgb, var(--card-color) 32%, #fff 68%);
+  cursor:pointer;
+  transition:flex .55s cubic-bezier(.4,0,.2,1);
 }
-@media (prefers-reduced-motion: reduce){
-  .value__drop--a,.value__drop--b{animation:none}
+.pillars__item:hover,
+.pillars__item:focus-within,
+.pillars__item:focus-visible{flex:2.6}
+.pillars__item:focus-visible{outline:2px solid var(--card-color);outline-offset:-2px}
+
+.pillars__collapsed{
+  position:relative;
+  z-index:1;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:opacity .25s ease;
+}
+.pillars__item:hover .pillars__collapsed,
+.pillars__item:focus-within .pillars__collapsed{opacity:0}
+
+.pillars__num{font-family:var(--font-heading);font-weight:700;font-size:.9rem;color:color-mix(in srgb, var(--card-color) 70%, #1a1625 30%)}
+.pillars__label{
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  align-self:flex-start;
+  font-family:var(--font-heading);
+  font-weight:700;
+  font-size:1.2rem;
+  color:#1a1625;
+  white-space:nowrap;
+}
+
+.pillars__expanded{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  padding:28px 26px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  gap:10px;
+  opacity:0;
+  transform:translateX(16px);
+  transition:opacity .35s ease .08s, transform .35s ease .08s;
+  pointer-events:none;
+}
+.pillars__item:hover .pillars__expanded,
+.pillars__item:focus-within .pillars__expanded{
+  opacity:1;
+  transform:translateX(0);
+  pointer-events:auto;
+}
+
+.pillars__icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;height:44px;
+  margin-bottom:.5rem;
+  border-radius:12px;
+  background:color-mix(in srgb, var(--card-color) 45%, #fff 55%);
+  color:color-mix(in srgb, var(--card-color) 75%, #1a1625 25%);
+}
+.pillars__icon svg{width:22px;height:22px}
+
+.pillars__eyebrow{
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:.78rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:color-mix(in srgb, var(--card-color) 75%, #1a1625 25%);
+}
+.pillars__heading{font-size:1.4rem;color:#1a1625;margin:0}
+.pillars__desc{font-family:var(--font-body);font-size:.95rem;line-height:1.5;color:#49404f}
+
+.pillars__tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.pillars__tags span{
+  font-family:var(--font-body);
+  font-size:.8rem;
+  font-weight:500;
+  color:#1a1625;
+  padding:4px 12px;
+  border:1px solid color-mix(in srgb, var(--card-color) 55%, #1a1625 15%);
+  border-radius:999px;
+  white-space:nowrap;
+}
+
+@media (max-width:860px){
+  .pillars{flex-direction:column;height:auto}
+  .pillars__item{flex:none!important;padding:26px 22px}
+  .pillars__collapsed{display:none}
+  .pillars__expanded{
+    position:static;
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+  }
 }
 
 .value__copy{
