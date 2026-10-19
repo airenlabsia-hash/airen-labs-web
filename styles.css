@@ -592,6 +592,11 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 .card h3{font-size:1.25rem;margin-bottom:.75rem;color:#fff}
 .card p{color:var(--muted-foreground);font-size:.98rem}
 
+/* ---------- Showcase ("Cómo te ayudamos", moved just before the CTA) ---------- */
+.showcase{padding:96px 0 48px}
+
+.showcase h2{font-size:clamp(1.9rem,4vw,2.75rem);margin-bottom:3.5rem}
+
 /* ---------- Services ---------- */
 .services{padding:96px 0}
 
