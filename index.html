@@ -16,6 +16,25 @@
 </head>
 <body>
 
+<header class="site-header">
+  <div class="site-header__inner container">
+    <a href="#hero" class="site-header__brand">
+      <img src="imagenes%20web/logo.svg" alt="" class="site-header__logo">
+      Airen Labs
+    </a>
+    <nav class="site-header__nav" id="siteNav">
+      <a href="#services">Soluciones</a>
+      <a href="#metodologia">Metodología</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#contact">Contacto</a>
+    </nav>
+    <a href="/diagnostico" class="btn btn--primary site-header__cta">Diagnóstico gratis</a>
+    <button type="button" class="site-header__toggle" id="siteNavToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
 <div class="bg-scene" aria-hidden="true">
   <div class="wave wave--1"></div>
   <div class="wave wave--2"></div>
@@ -33,8 +52,15 @@
   <div class="hero__content reveal">
     <h1 class="flicker">Airen Labs</h1>
     <p class="hero__subtitle">Respira, no es magia, es IA</p>
+    <div class="hero__ctas">
+      <a href="/diagnostico" class="btn btn--primary">Solicita tu diagnóstico gratuito</a>
+      <a href="#services" class="btn btn--outline" style="--accent-color:#fff">Ver soluciones</a>
+    </div>
   </div>
 </section>
+
+<!-- Prueba social / partners: en pausa hasta tener logos reales de clientes (ver wireframe) -->
+
 
 <section class="value">
   <div class="container reveal">
@@ -80,12 +106,8 @@
       </li>
     </ul>
     <p class="value__copy">Todo ello basado en <span class="highlight-blue">datos reales</span>. Tu empresa ganará la <span class="highlight-blue">agilidad</span> necesaria para innovar más rápido, liderar en un mercado competitivo y aprovechar cada <span class="highlight-blue">oportunidad</span>.</p>
-  </div>
-</section>
 
-<section class="benefits">
-  <div class="container">
-    <h2 class="center reveal">Cómo te ayudamos</h2>
+    <h3 class="value__subheading center reveal">Cómo te ayudamos</h3>
     <div class="cards">
       <article class="card reveal">
         <div class="card__media"><img src="imagenes%20web/benefit-productividad.jpg" alt="Multiplica tu Productividad" loading="lazy"></div>
@@ -132,7 +154,7 @@
   </div>
 </section>
 
-<section class="diagram">
+<section class="diagram" id="metodologia">
   <div class="container reveal">
     <h2 class="center heading-solid">Así lo hacemos posible</h2>
     <div class="diagram__flow">
@@ -278,9 +300,17 @@
 
 <footer class="footer">
   <div class="footer__inner">
-    <img src="imagenes%20web/logo.svg" alt="Airen Labs" class="footer__logo">
-    <p>© 2026 Airen Labs. Hacemos crecer tu negocio con IA.</p>
-    <nav class="footer__links"><a href="/privacidad">Política de privacidad</a></nav>
+    <div class="footer__brand">
+      <img src="imagenes%20web/logo.svg" alt="Airen Labs" class="footer__logo">
+      <p>© 2026 Airen Labs. Hacemos crecer tu negocio con IA.</p>
+    </div>
+    <nav class="footer__links">
+      <a href="#services">Soluciones</a>
+      <a href="#metodologia">Metodología</a>
+      <a href="#recursos">Recursos</a>
+      <a href="mailto:airenlabsia@gmail.com">Contacto</a>
+      <a href="/privacidad">Política de privacidad</a>
+    </nav>
   </div>
 </footer>
 

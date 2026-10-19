@@ -24,7 +24,7 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
 
 body{
   background:var(--background);
@@ -120,6 +120,80 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   .wave{animation:none}
 }
 
+/* ---------- Site header ---------- */
+.site-header{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:40;
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.site-header__inner{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  padding:14px 24px;
+}
+.site-header__brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--font-heading);
+  font-weight:700;
+  font-size:1.05rem;
+  color:#fff;
+  text-decoration:none;
+  margin-right:auto;
+}
+.site-header__logo{width:30px;height:auto}
+.site-header__nav{display:flex;align-items:center;gap:26px}
+.site-header__nav a{
+  font-family:var(--font-heading);
+  font-weight:500;
+  font-size:.92rem;
+  color:var(--muted-foreground);
+  text-decoration:none;
+  transition:color .2s ease;
+}
+.site-header__nav a:hover{color:#fff}
+.site-header__cta{padding:10px 22px;font-size:.88rem;flex-shrink:0}
+.site-header__toggle{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  width:34px;height:34px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  flex-shrink:0;
+}
+.site-header__toggle span{display:block;width:100%;height:2px;background:#fff;border-radius:2px;transition:transform .2s ease, opacity .2s ease}
+.site-header__toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.site-header__toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.site-header__toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+@media (max-width:860px){
+  .site-header__nav{
+    position:absolute;
+    top:100%;left:0;right:0;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:4px;
+    padding:12px 24px 18px;
+    background:var(--glass-strong);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    display:none;
+  }
+  .site-header__nav.is-open{display:flex}
+  .site-header__nav a{padding:10px 0;width:100%}
+  .site-header__inner .site-header__cta{display:none}
+  .site-header__toggle{display:flex}
+}
+
 /* ---------- Hero ---------- */
 .hero{
   position:relative;
@@ -132,6 +206,8 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 }
 
 .hero__content{position:relative;z-index:1}
+
+.hero__ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:2.25rem}
 
 .hero__logo-bg{
   position:absolute;
@@ -213,6 +289,8 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 .value{padding:96px 0}
 
 .value h2{font-size:clamp(1.9rem,4vw,2.75rem);margin-bottom:3.5rem}
+
+.value__subheading{font-size:clamp(1.5rem,3vw,2.1rem);color:#fff;margin:5rem 0 3rem}
 
 .value__list{
   position:relative;
@@ -351,11 +429,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   .diagram__hline,.diagram__beam{display:none}
 }
 
-/* ---------- Benefits ---------- */
-.benefits{padding:96px 0}
-
-.benefits h2{font-size:clamp(1.9rem,4vw,2.75rem);margin-bottom:3.5rem;color:#fff}
-
+/* ---------- Benefits (merged into .value, see value__subheading above) ---------- */
 .cards{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -524,12 +598,18 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   padding:0 24px;
   display:flex;
   align-items:center;
-  justify-content:center;
-  gap:12px;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:18px 28px;
 }
+.footer__brand{display:flex;align-items:center;gap:12px}
 .footer__logo{width:28px;height:auto;flex-shrink:0}
-@media (max-width:520px){
-  .footer__inner{flex-direction:column;text-align:center}
+.footer__links{display:flex;flex-wrap:wrap;gap:8px 22px}
+.footer__links a{color:var(--muted-foreground);text-decoration:none;transition:color .2s ease}
+.footer__links a:hover{color:#fff}
+@media (max-width:620px){
+  .footer__inner{flex-direction:column;text-align:center;justify-content:center}
+  .footer__links{justify-content:center}
 }
 
 /* ---------- Reveal animation ---------- */
