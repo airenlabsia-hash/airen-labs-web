@@ -660,7 +660,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 .cta__card{
   max-width:1080px;
   margin:0 auto;
-  background:var(--glass);
+  background:rgba(18,12,26,0.3);
   backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
   border:1px solid var(--border);
@@ -784,6 +784,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 
 /* ---------- Sub-page: free resources ---------- */
 .resources{padding:0 0 96px}
+.resources h2{font-size:clamp(1.9rem,4vw,2.75rem);margin-bottom:1.25rem}
 .resources__intro{
   max-width:600px;
   margin:0 auto 2.5rem;
