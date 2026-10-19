@@ -140,7 +140,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   transform:translate(-50%,-50%);
   width:min(250px,27vw);
   height:auto;
-  opacity:.5;
+  opacity:.85;
   filter:drop-shadow(0 0 40px rgba(238,61,180,.35));
   z-index:0;
 }
