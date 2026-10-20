@@ -338,14 +338,13 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:30px;height:30px;
-  margin-top:6px;
-  border-radius:9px;
-  background:color-mix(in srgb, var(--icon-color) 22%, transparent);
+  width:42px;height:42px;
+  border-radius:12px;
+  background:color-mix(in srgb, var(--icon-color) 32%, transparent);
   color:var(--icon-color);
   flex-shrink:0;
 }
-.value__icon svg{width:16px;height:16px}
+.value__icon svg{width:22px;height:22px}
 
 /* ---------- Pillars accordion ---------- */
 .pillars{
@@ -701,7 +700,14 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 .cta__subtitle{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:300;color:#F1EAF7;margin-bottom:2.5rem}
 .cta__subtitle strong{font-weight:700;color:#fff}
 
-.value__list--cta li{color:#fff}
+.value__list--cta li{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  color:#fff;
+}
+.value__list--cta li:not(:last-child){margin-bottom:10px}
 
 /* hand-drawn white highlighter stroke under a word */
 .marker-underline{
