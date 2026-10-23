@@ -52,13 +52,13 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   }
 
   function seed() {
-    const count = Math.round((width * height) / 16000);
+    const count = Math.round((width * height) / 13000);
     particles = Array.from({ length: count }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      r: Math.random() * 1.6 + 0.6,
-      vx: (Math.random() - 0.5) * 0.12,
-      vy: (Math.random() - 0.5) * 0.12,
+      r: Math.random() * 1.8 + 0.7,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
       phase: Math.random() * Math.PI * 2,
       speed: 0.6 + Math.random() * 0.8,
@@ -96,10 +96,14 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
     for (const p of particles) {
       const twinkle = 0.5 + 0.5 * Math.sin(t * 0.001 * p.speed + p.phase);
+      const alpha = 0.3 + twinkle * 0.6;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.color + (0.25 + twinkle * 0.55) + ')';
+      ctx.fillStyle = p.color + alpha + ')';
+      ctx.shadowColor = p.color + (alpha * 0.9) + ')';
+      ctx.shadowBlur = p.r * 5;
       ctx.fill();
+      ctx.shadowBlur = 0;
     }
 
     if (!reduceMotion) requestAnimationFrame(step);
