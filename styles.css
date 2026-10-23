@@ -202,7 +202,7 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:140px 24px 60px;
+  padding:90px 24px 60px;
 }
 
 .hero__content{position:relative;z-index:1}
@@ -215,17 +215,17 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   justify-content:center;
   flex-wrap:wrap;
   gap:14px;
-  margin-bottom:.75rem;
+  margin-bottom:.35rem;
 }
 
 .hero h1{
-  font-size:clamp(3.75rem,9.5vw,7rem);
+  font-size:clamp(2.75rem,7vw,5rem);
   font-weight:600;
   color:#FAFAFA;
 }
 
 @media (max-width:480px){
-  .hero h1{font-size:2.4rem}
+  .hero h1{font-size:2rem}
 }
 
 .flicker{
