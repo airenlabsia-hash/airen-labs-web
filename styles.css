@@ -140,15 +140,15 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 .site-header__brand{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
   font-family:var(--font-heading);
   font-weight:700;
-  font-size:1.05rem;
+  font-size:1.3rem;
   color:#fff;
   text-decoration:none;
   margin-right:auto;
 }
-.site-header__logo{width:44px;height:auto}
+.site-header__logo{width:56px;height:auto}
 .site-header__nav{display:flex;align-items:center;gap:26px}
 .site-header__nav a{
   font-family:var(--font-heading);
@@ -209,42 +209,6 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
 .hero__content{position:relative;z-index:1}
 
 .hero__ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:2.25rem}
-
-.hero__brand{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:14px;
-  margin-bottom:.35rem;
-}
-
-.hero h1{
-  font-size:clamp(2.75rem,7vw,5rem);
-  font-weight:600;
-  color:#FAFAFA;
-}
-
-@media (max-width:480px){
-  .hero h1{font-size:2rem}
-}
-
-.flicker{
-  animation:textFlicker 4.5s ease-in-out infinite;
-}
-@keyframes textFlicker{
-  0%,18%,22%,54%,58%,100%{
-    opacity:1;
-    text-shadow:0 0 18px rgba(255,255,255,.65), 0 0 48px rgba(238,61,180,.45), 0 0 90px rgba(161,46,219,.25);
-  }
-  20%,56%{
-    opacity:.82;
-    text-shadow:0 0 6px rgba(255,255,255,.3);
-  }
-}
-@media (prefers-reduced-motion: reduce){
-  .flicker{animation:none;text-shadow:0 0 24px rgba(255,255,255,.4)}
-}
 
 .hero__subtitle{
   font-size:clamp(1rem,2vw,1.2rem);
