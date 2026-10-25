@@ -418,10 +418,10 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   border-radius:20px;
   border:1.5px solid transparent;
   background:
-    linear-gradient(var(--glass),var(--glass)) padding-box,
+    linear-gradient(rgba(18,12,26,0.28),rgba(18,12,26,0.28)) padding-box,
     var(--gradient-primary) border-box;
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
   box-shadow:0 24px 60px rgba(0,0,0,.35);
 }
 .closing-card__eyebrow{
