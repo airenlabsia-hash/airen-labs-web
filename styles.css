@@ -238,10 +238,19 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   text-shadow:0 2px 20px rgba(0,0,0,.4);
 }
 
+@media (max-width:600px){
+  .hero{min-height:auto;padding:110px 24px 64px}
+}
+
 /* ---------- Value section ---------- */
 .value{padding:96px 0}
 
 .value h2{font-size:clamp(1.9rem,4vw,2.75rem);margin-bottom:3.5rem}
+
+@media (max-width:600px){
+  .value{padding:56px 0 72px}
+  .value h2{margin-bottom:2.25rem}
+}
 
 .value__subheading{font-size:clamp(1.5rem,3vw,2.1rem);color:#fff;margin:5rem 0 3rem}
 
