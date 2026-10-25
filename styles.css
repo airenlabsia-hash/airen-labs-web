@@ -819,6 +819,16 @@ h1,h2,h3{font-family:var(--font-heading);font-weight:700;letter-spacing:-0.02em}
   opacity:.75;
 }
 
+.resources__folders{
+  max-width:1080px;
+  margin:3rem auto 0;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:flex-end;
+  gap:2.5rem 3rem;
+}
+
 .resources__list{max-width:680px;margin:2.5rem auto 0;display:flex;flex-direction:column;gap:14px}
 .resource{
   display:flex;
