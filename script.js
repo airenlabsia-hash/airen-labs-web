@@ -109,11 +109,13 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     if (!reduceMotion) requestAnimationFrame(step);
   }
 
-  resize();
   window.addEventListener('resize', resize);
-  if (reduceMotion) {
-    step(0);
-  } else {
-    requestAnimationFrame(step);
-  }
+  requestAnimationFrame(() => {
+    resize();
+    if (reduceMotion) {
+      step(0);
+    } else {
+      requestAnimationFrame(step);
+    }
+  });
 })();
