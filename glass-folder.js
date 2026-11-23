@@ -166,7 +166,7 @@
 
     const vg = ctx.createRadialGradient(w / 2, h * 0.42, Math.min(w, h) * 0.2, w / 2, h * 0.5, Math.max(w, h) * 0.75);
     vg.addColorStop(0, 'rgba(0,0,0,0)');
-    vg.addColorStop(1, 'rgba(5,3,10,.42)');
+    vg.addColorStop(1, 'rgba(5,3,10,.24)');
     ctx.fillStyle = vg;
     ctx.fillRect(0, 0, w, h);
 
@@ -378,9 +378,10 @@
     primary: {
       style: 'network',
       base: '#0a0612',
+      grid: false,
       waves: [
-        { colors: ['#EE3DB4', '#ff7fd1', '#A12EDB'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: -0.12, blur: 0.14, alpha: 0.5 },
-        { colors: ['#A12EDB', '#6C3FE0', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: 0.18, blur: 0.16, alpha: 0.4 },
+        { colors: ['#EE3DB4', '#ff7fd1', '#A12EDB'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: -0.12, blur: 0.14, alpha: 0.68 },
+        { colors: ['#A12EDB', '#6C3FE0', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: 0.18, blur: 0.16, alpha: 0.55 },
       ],
       dotColor: '#ff9bdc',
       dots: 24,
@@ -388,9 +389,10 @@
     accent: {
       style: 'network',
       base: '#0a0612',
+      grid: false,
       waves: [
-        { colors: ['#A12EDB', '#c77aee', '#6C3FE0'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: 0.1, blur: 0.14, alpha: 0.5 },
-        { colors: ['#6C3FE0', '#3333CC', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: -0.16, blur: 0.16, alpha: 0.4 },
+        { colors: ['#A12EDB', '#c77aee', '#6C3FE0'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: 0.1, blur: 0.14, alpha: 0.68 },
+        { colors: ['#6C3FE0', '#3333CC', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: -0.16, blur: 0.16, alpha: 0.55 },
       ],
       dotColor: '#d59bff',
       dots: 24,
@@ -398,9 +400,10 @@
     secondary: {
       style: 'network',
       base: '#0a0612',
+      grid: false,
       waves: [
-        { colors: ['#3333CC', '#8686FF', '#3333CC'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: -0.1, blur: 0.14, alpha: 0.5 },
-        { colors: ['#1b1a5c', '#3333CC', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: 0.14, blur: 0.16, alpha: 0.4 },
+        { colors: ['#3333CC', '#8686FF', '#3333CC'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: -0.1, blur: 0.14, alpha: 0.68 },
+        { colors: ['#1b1a5c', '#3333CC', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: 0.14, blur: 0.16, alpha: 0.55 },
       ],
       dotColor: '#9bb8ff',
       dots: 24,
