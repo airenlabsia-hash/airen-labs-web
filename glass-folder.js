@@ -73,11 +73,120 @@
     };
   }
 
+  // Arte "red de puntos + ondas", igual estética que el fondo del hero
+  // (constelación de puntos conectados sobre ondas de color difuminadas).
+  // Se dibuja de una sola vez con Canvas2D: es barato, no necesita trocearse.
+  function createNetworkArtJob(w, h, recipe, seed) {
+    const canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    const r = rng(seed);
+
+    ctx.fillStyle = recipe.base || '#0a0612';
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.globalCompositeOperation = 'screen';
+    (recipe.waves || []).forEach((wave) => {
+      const cx = w * (wave.x ?? 0.5) + (r() - 0.5) * w * 0.08;
+      const cy = h * (wave.y ?? 0.5) + (r() - 0.5) * h * 0.08;
+      const rw = w * (wave.rw ?? 0.9);
+      const rh = h * (wave.rh ?? 0.28);
+      const angle = (wave.angle ?? 0) + (r() - 0.5) * 0.2;
+      const grad = ctx.createLinearGradient(-rw / 2, 0, rw / 2, 0);
+      wave.colors.forEach((c, ci) => grad.addColorStop(ci / (wave.colors.length - 1), c));
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(angle);
+      ctx.filter = `blur(${Math.round(Math.min(w, h) * (wave.blur ?? 0.14))}px)`;
+      ctx.globalAlpha = wave.alpha ?? 0.5;
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, rw / 2, rh / 2, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+
+    if (recipe.grid !== false) {
+      ctx.strokeStyle = 'rgba(255,255,255,.055)';
+      ctx.lineWidth = 1;
+      const step = Math.max(18, Math.round(Math.min(w, h) / 13));
+      for (let x = 0; x <= w; x += step) {
+        ctx.beginPath();
+        ctx.moveTo(x + 0.5, 0);
+        ctx.lineTo(x + 0.5, h);
+        ctx.stroke();
+      }
+      for (let y = 0; y <= h; y += step) {
+        ctx.beginPath();
+        ctx.moveTo(0, y + 0.5);
+        ctx.lineTo(w, y + 0.5);
+        ctx.stroke();
+      }
+    }
+
+    const n = recipe.dots ?? 22;
+    const pts = [];
+    for (let i = 0; i < n; i++) {
+      pts.push({ x: r() * w, y: r() * h, rad: 0.6 + r() * (recipe.dotSize ?? 2.1), bright: r() });
+    }
+    const maxDist = Math.min(w, h) * (recipe.linkDist ?? 0.24);
+    ctx.lineWidth = 1;
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x;
+        const dy = pts[i].y - pts[j].y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < maxDist) {
+          ctx.strokeStyle = `rgba(255,255,255,${((1 - d / maxDist) * 0.3).toFixed(3)})`;
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    pts.forEach((p) => {
+      const dotColor = p.bright > 0.74 ? '#ffffff' : recipe.dotColor || '#ff7fd1';
+      const glowR = p.rad * (2.4 + p.bright * 2.2);
+      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowR);
+      g.addColorStop(0, dotColor);
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, glowR, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = dotColor;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.rad, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    const vg = ctx.createRadialGradient(w / 2, h * 0.42, Math.min(w, h) * 0.2, w / 2, h * 0.5, Math.max(w, h) * 0.75);
+    vg.addColorStop(0, 'rgba(0,0,0,0)');
+    vg.addColorStop(1, 'rgba(5,3,10,.42)');
+    ctx.fillStyle = vg;
+    ctx.fillRect(0, 0, w, h);
+
+    const pixels = ctx.getImageData(0, 0, w, h).data;
+    return {
+      width: w,
+      height: h,
+      pixels,
+      step() {
+        return true;
+      },
+    };
+  }
+
   // Pinta la receta en un ImageData, repartido en pasos (`step`) para no
   // bloquear el hilo principal.
   function createArtJob(width, height, recipe, seed) {
     const w = Math.max(1, Math.round(width));
     const h = Math.max(1, Math.round(height));
+    if (recipe.style === 'network') return createNetworkArtJob(w, h, recipe, seed);
     const colors = recipe.colors.length >= 2 ? recipe.colors : ['#111111', '#eeeeee'];
     const stops = colors.map((c, i) => ({ t: i / (colors.length - 1), c: hexToRgb(c) }));
     const scale = recipe.scale ?? 0.7;
@@ -262,11 +371,40 @@
     });
   }
 
-  // Recetas en los colores de marca de AIREN LABS (sin imágenes externas).
+  // Recetas en los colores de marca de AIREN LABS: misma estética que el
+  // fondo del hero (ondas difuminadas + constelación de puntos), sin
+  // imágenes externas.
   const ART_PRESETS = {
-    primary: { style: 'marble', colors: ['#0d0714', '#2a0f22', '#EE3DB4', '#160a12', '#ff7fd1', '#ffe1f2'], scale: 0.68, warp: 3.1, angle: -0.5, gloss: 0.5, veins: 0.45 },
-    accent: { style: 'marble', colors: ['#0d0714', '#241037', '#A12EDB', '#140a1c', '#c77aee', '#f1dcff'], scale: 0.72, warp: 3.4, angle: 1.9, gloss: 0.5, veins: 0.5 },
-    secondary: { style: 'streak', colors: ['#0d0714', '#121a3a', '#3333CC', '#0a0e22', '#8686FF', '#dde0ff'], scale: 0.7, warp: 1.6, angle: 0.4, gloss: 0.3, veins: 0 },
+    primary: {
+      style: 'network',
+      base: '#0a0612',
+      waves: [
+        { colors: ['#EE3DB4', '#ff7fd1', '#A12EDB'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: -0.12, blur: 0.14, alpha: 0.5 },
+        { colors: ['#A12EDB', '#6C3FE0', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: 0.18, blur: 0.16, alpha: 0.4 },
+      ],
+      dotColor: '#ff9bdc',
+      dots: 24,
+    },
+    accent: {
+      style: 'network',
+      base: '#0a0612',
+      waves: [
+        { colors: ['#A12EDB', '#c77aee', '#6C3FE0'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: 0.1, blur: 0.14, alpha: 0.5 },
+        { colors: ['#6C3FE0', '#3333CC', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: -0.16, blur: 0.16, alpha: 0.4 },
+      ],
+      dotColor: '#d59bff',
+      dots: 24,
+    },
+    secondary: {
+      style: 'network',
+      base: '#0a0612',
+      waves: [
+        { colors: ['#3333CC', '#8686FF', '#3333CC'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: -0.1, blur: 0.14, alpha: 0.5 },
+        { colors: ['#1b1a5c', '#3333CC', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: 0.14, blur: 0.16, alpha: 0.4 },
+      ],
+      dotColor: '#9bb8ff',
+      dots: 24,
+    },
   };
 
   // -- geometría de la carpeta (idéntica al original, a 340×272) ----------
