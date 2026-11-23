@@ -380,33 +380,33 @@
       base: '#0a0612',
       grid: false,
       waves: [
-        { colors: ['#EE3DB4', '#ff7fd1', '#A12EDB'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: -0.12, blur: 0.14, alpha: 0.68 },
-        { colors: ['#A12EDB', '#6C3FE0', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: 0.18, blur: 0.16, alpha: 0.55 },
+        { colors: ['#EE3DB4', '#ff7fd1', '#A12EDB'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: -0.12, blur: 0.14, alpha: 0.78 },
+        { colors: ['#A12EDB', '#6C3FE0', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: 0.18, blur: 0.16, alpha: 0.65 },
       ],
       dotColor: '#ff9bdc',
-      dots: 24,
+      dots: 0,
     },
     accent: {
       style: 'network',
       base: '#0a0612',
       grid: false,
       waves: [
-        { colors: ['#A12EDB', '#c77aee', '#6C3FE0'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: 0.1, blur: 0.14, alpha: 0.68 },
-        { colors: ['#6C3FE0', '#3333CC', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: -0.16, blur: 0.16, alpha: 0.55 },
+        { colors: ['#A12EDB', '#c77aee', '#6C3FE0'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: 0.1, blur: 0.14, alpha: 0.78 },
+        { colors: ['#6C3FE0', '#3333CC', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: -0.16, blur: 0.16, alpha: 0.65 },
       ],
       dotColor: '#d59bff',
-      dots: 24,
+      dots: 0,
     },
     secondary: {
       style: 'network',
       base: '#0a0612',
       grid: false,
       waves: [
-        { colors: ['#3333CC', '#8686FF', '#3333CC'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: -0.1, blur: 0.14, alpha: 0.68 },
-        { colors: ['#1b1a5c', '#3333CC', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: 0.14, blur: 0.16, alpha: 0.55 },
+        { colors: ['#3333CC', '#8686FF', '#3333CC'], x: 0.32, y: 0.3, rw: 1.35, rh: 0.5, angle: -0.1, blur: 0.14, alpha: 0.78 },
+        { colors: ['#1b1a5c', '#3333CC', 'transparent'], x: 0.74, y: 0.7, rw: 1.1, rh: 0.4, angle: 0.14, blur: 0.16, alpha: 0.65 },
       ],
       dotColor: '#9bb8ff',
-      dots: 24,
+      dots: 0,
     },
   };
 
