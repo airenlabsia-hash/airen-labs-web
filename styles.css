@@ -27,3 +27,4 @@
 .step__title--sm{font-size:.86rem}
 @media (max-width:860px){.steps-5{grid-template-columns:1fr;gap:28px}}
 .page-about .cta__card{max-width:660px;padding:40px 36px}
+.page-about .cta__email a{text-decoration-thickness:1px;text-underline-offset:2px}
