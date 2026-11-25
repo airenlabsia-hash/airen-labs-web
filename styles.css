@@ -6,8 +6,11 @@
 .about-prose{max-width:700px;margin:0 auto;color:var(--muted-foreground);font-size:1.03rem;line-height:1.85}
 .about-prose p+p{margin-top:1.1rem}
 .about-prose strong{color:#fff}
-.cards--five{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px}
-.cards--five .card{text-align:left}
+.cards--five{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.cards--five .card{display:flex;align-items:flex-start;gap:18px;text-align:left;padding:24px 22px}
+.cards--five .card__icon{flex-shrink:0;margin-bottom:0}
+.cards--five .card h3{margin-bottom:.4rem}
+.cards--five .card p{font-size:.92rem}
 .about-team{padding:64px 0}
 .about-team__grid{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start}
 .about-team__photo{position:relative;border-radius:20px;padding:4px;background-image:linear-gradient(var(--background),var(--background)),var(--gradient-primary);background-origin:border-box;background-clip:padding-box,border-box;border:1.5px solid transparent}
