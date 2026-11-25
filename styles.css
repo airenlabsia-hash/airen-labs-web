@@ -12,7 +12,7 @@
 .cards--five .card h3{margin-bottom:.4rem}
 .cards--five .card p{font-size:.92rem}
 .about-team{padding:64px 0}
-.about-team__grid{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start}
+.about-team__grid{display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start}
 .about-team__photo{position:relative;border-radius:20px;padding:4px;background-image:linear-gradient(var(--background),var(--background)),var(--gradient-primary);background-origin:border-box;background-clip:padding-box,border-box;border:1.5px solid transparent}
 .about-team__photo img{display:block;width:100%;height:auto;border-radius:16px}
 .about-team__intro{font-size:1.15rem;color:#fff;margin-bottom:1.25rem;font-family:var(--font-heading);font-weight:500}
